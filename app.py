@@ -3,9 +3,19 @@ import login
 import database
 from config import *
 from mysql import connector
-from flask import Flask, redirect, url_for, request, render_template
+from flask import Flask, redirect, url_for, request, render_template, make_response
+from flask_mail import * 
+from random import randint
 
 app = Flask(__name__)
+mail = Mail(app)  
+app.config["MAIL_SERVER"]='smtp.gmail.com'  
+app.config["MAIL_PORT"] = 465      
+app.config["MAIL_USERNAME"] = 'jesvijonathan.aids2020@citchennai.net'  
+app.config['MAIL_PASSWORD'] = 'happysunday'  
+app.config['MAIL_USE_SSL'] = True  
+mail = Mail(app)  
+otp = randint(000000,999999)  
 
 def load():
     db = connector.connect(
@@ -63,9 +73,13 @@ def table_create(tbl=None):
 
 @app.route("/")
 def index():
-    #print(request.remote_addr,request.environ['REMOTE_ADDR'])
-    name = request.args.get("name", "world")
-    return render_template("login/form.html", name=name)
+   try:
+      user=getcookie()
+      login.verification(user)
+      return render_template("sel.html")
+   except:
+      pass
+   return render_template("login/form.html")
 
 @app.route('/success/<name>')
 def success(name):
@@ -116,15 +130,60 @@ def table():
 
    return render_template('load.html',f=tbl[0],r=tbl[1],title=title,detail=detail)
 
+
+@app.route('/setcookie')
+def setcookie():
+    key=request.args.get('key')
+    val=request.args.get('val')
+    resp = make_response(render_template("sel.html"))
+    resp.set_cookie(key,val)
+    return resp
+
+@app.route('/register')
+def reg():
+    return render_template("register.html")
+
+@app.route('/verify',methods = ["POST"])  
+def verify():  
+   email = request.form["email"]   
+   msg = Message('OTP',sender = 'username@gmail.com', recipients = [email])  
+   msg.body = str(otp)  
+   mail.send(msg)
+   return render_template("reg_otp.html")
+
+@app.route('/validate',methods=["POST"])   
+def validate():  
+   user_otp = request.form['otp']  
+   if otp == int(user_otp):  
+      return "<h3> Email  verification is  successful </h3>"  
+   return "<h3>failure, OTP does not match</h3>" 
+
+@app.route('/getcookie')
+def getcookie():
+    name = request.cookies.get('user', None)
+    return name
+
+@app.route('/deletecookie')
+def delcookie():
+   resp = make_response(render_template("sel.html"))
+   resp.set_cookie('user', '', expires=0)
+   return resp
+
 @app.route('/login',methods = ['POST', 'GET'])
 def sign():
    if request.method == 'POST':
       var = request.form
-      val = login.verification(var)
+      val = login.verification(var)      
       
-      
-
       if val == 1:
+         try:
+            if var['remember-me']=="on":
+               return redirect(url_for('setcookie', key='user', val=var['username']))
+            else:
+               return redirect(url_for('select'))    
+         except:
+            return redirect(url_for('select'))
+         return redirect(url_for('getcookie'))
          #return table()
          return redirect(url_for('select'))
          return redirect(url_for('success',name = "to the url"))
