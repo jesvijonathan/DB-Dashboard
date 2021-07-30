@@ -11,8 +11,15 @@ def verification(var):
 
     user = var['username'] 
     pas = var['password']
+    
+    d = log.dash_load_data()
 
     if user == config.username and pas == config.password:
         return 1
+    elif user in d:
+        if d[user]['password']==pas:
+            return 1
+        else:
+            return "Incorrect password !"
     else:
-        return "Incorrect username/password !"
+        return "Username does not exist !"

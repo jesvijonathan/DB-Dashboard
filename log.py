@@ -1,5 +1,4 @@
 from os import truncate
-import login
 import database
 from config import *
 from mysql import connector
@@ -26,39 +25,71 @@ def dash_load_data():
     return di
 
 def dash_data_res():
-    dic = { 'admin':'root'}
+    dic = {}
+
+    dic2 = { 'username':'admin', 
+    'password':'root', 
+    'email':'jesvijonathan.aids2020@citchennai.net', 
+    'first_name':'administrator', 
+    'last_name':'',
+    'member':'sudo',}
+    
+    dic['admin']=dic2
 
     with open('data/users.pkl', 'wb') as f:
         pickle.dump(dic, f)
     
     print("user data initialize/reseted")
 
-def dash_register(use=None,pas=None):   
+def dash_register(d):   
     
     dic = dash_load_data()
-    
-    for x in dic:
-        if x == use:
-            print("already there..")
-            return
-    
-    dic[use]=pas        
+    ok_list = []
+
+    for y in d:
+        for x in dic:
+            if y == x:
+                print(x,"already there...")
+                return "Username already present.."
+            else:
+                ok_list.append(y)
+
+    for user in ok_list:
+        dic[user]=d[user] 
 
     try:
         with open('data/users.pkl', 'wb') as f:
             pickle.dump(dic, f)
     except:
         print("error")
+        return "Error"
+        
+    return 1
 
 def menu():
     while(True):
-        t=int(input("\n\n1. View data\n2. Register user\n3. Reset data\n:"))
+        t=int(input("\n\n1. View data\n2. Register user\n3. Reset data\n4. Quit\n:"))
         if t==1:
             f = dash_load_data()
             print(f)
         elif t==2:
+            
+            fn = input("firstname : ")
+            ln = input("lastname : ") 
             u = input("username : ")    
             p = input("password : ")
-            dash_register(u,p)
+            e = input("email : ")
+            m = input("member : ")
+            arrange(u,p,e,fn,ln,m)
         elif t==3:
             dash_data_res()
+        elif t==4:
+            exit()
+
+def arrange(u,p,e,fn,ln,m):
+    d = {}
+    d1 = {'username':u, 'password':p, 'email':e, 'firstname':fn, 'lastname':ln, 'member':m }
+    d[u]=d1
+    return dash_register(d)
+
+#menu()

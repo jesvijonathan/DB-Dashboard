@@ -3,6 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <head>
+    <title>Login</title>
     <meta charset="UTF-8">
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="HTML, CSS, JavaScript">
@@ -12,13 +13,13 @@
   
 <body>
     <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
+        <h3 class="text-center text-white pt-5"></h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action = "/login" method = "post">
-                            <h3 class="text-center text-info">Login</h3>
+                            <h3 id="ii" class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Username:</label><br>
                                 <input type="text" autofocus="Ture" name="username" id="username" class="form-control">
@@ -28,12 +29,18 @@
                                 <input type="password" name="password" id="password" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="remember-me" class="text-info"><span>Remember me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <label for="remember-me" id="for" class="text-info t"><span class="lop">Remember me</span> <span><input id="remember-me" class="bo" name="remember-me" type="checkbox"></span></label>
+                                <a href="/register" id="rof" class="text-info t">Forgot Password</a>
+                                <br><a href="/register" id="ro" class="text-info t">Register Here</a><br>
+                                <div class="s">
+                                <input type="submit" id="but" name="submit" class="row justify-content-center align-items-center btn-info btn-md " value="Submit">
+                            </div><br>
                                 <div class="row justify-content-center align-items-center" style="color:red">{{ msg }}</div>
+                                
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="/register" class="text-info">Register here</a>
+                                
+                                
                             </div>
                         </form>
                     </div>
@@ -42,3 +49,44 @@
         </div>
     </div>
 </body>
+
+<style>
+    .lop{
+        padding-right: 5px;
+    }
+    .t{
+        font-size: 12px;
+        font-weight: 500;
+    }
+    #ii{
+        padding-bottom: 35px;
+    }
+    #for{
+        float: right;
+    }
+    #rof{
+        float: left;
+        width: fit-content;
+    }
+    .s{
+        padding-top: 17px;
+    }
+    #but{
+        width:140px;
+        margin: 0 auto;
+        border-radius: 6px;
+        padding: 7px;
+        border-style: hidden;
+        font-weight: 500;
+        font-size: 16px;
+    }
+    #ro{
+        float: left;
+        padding-top: 7px;
+    }
+    #remember-me{
+        
+        height: 12px;
+        width: 12px;
+    }
+</style>

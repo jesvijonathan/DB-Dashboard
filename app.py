@@ -1,5 +1,6 @@
 
 import login
+import log
 import database
 from config import *
 from mysql import connector
@@ -128,7 +129,7 @@ def table():
 
    tbl = table_create(tbl)
 
-   return render_template('load.html',f=tbl[0],r=tbl[1],title=title,detail=detail)
+   return render_template('login/load.html',f=tbl[0],r=tbl[1],title=title,detail=detail)
 
 
 @app.route('/setcookie')
@@ -141,22 +142,37 @@ def setcookie():
 
 @app.route('/register')
 def reg():
-    return render_template("register.html")
+    return render_template("login/register.html")
 
 @app.route('/verify',methods = ["POST"])  
 def verify():  
-   email = request.form["email"]   
-   msg = Message('OTP',sender = 'username@gmail.com', recipients = [email])  
-   msg.body = str(otp)  
-   mail.send(msg)
-   return render_template("reg_otp.html")
+   data = request.form
+   email=None
+   if data['member']=='sudo' or data['member']=='admin':
+      return render_template("login/ok.html",val="Wait For approval..")
+   msg = log.arrange(data['uname'],data['pass'],data['email'],data['fname'],data['lname'], data['member'])
+    
+   if msg == 1:
+      email = data["email"]
+      msg = Message('My Dashboard OTP Verification Number',sender = 'username@gmail.com', recipients = [email])  
+      text= "Hello {f}, \n\nYour (OTP) verification code for My-Dashboard registration (as '{u}') is : {n}\n\nVisit our website for more details.\nThank You".format(f=data['fname'],u=data['uname'],n=otp)
+      msg.body = str(text)
+      mail.send(msg)
+      return render_template("login/reg_otp.html",email=email)
+   else:
+      return render_template("login/ok.html",val=msg)
+
 
 @app.route('/validate',methods=["POST"])   
 def validate():  
-   user_otp = request.form['otp']  
-   if otp == int(user_otp):  
-      return "<h3> Email  verification is  successful </h3>"  
-   return "<h3>failure, OTP does not match</h3>" 
+   user_otp = request.form['no']
+   try:  
+      if otp == int(user_otp):  
+         return render_template("login/ok.html", val="You Have Been Verified !") 
+   except:
+      pass
+   return render_template("login/reg_otp.html",alert="true")
+
 
 @app.route('/getcookie')
 def getcookie():
@@ -168,6 +184,17 @@ def delcookie():
    resp = make_response(render_template("sel.html"))
    resp.set_cookie('user', '', expires=0)
    return resp
+
+
+@app.route('/ok')
+def ok():
+   return render_template("login/ok.html", val="You Have Been Verified !")
+
+@app.route('/nig')
+def nig():
+   resp = make_response(render_template("login/reg_otp.html"))
+   return resp
+
 
 @app.route('/login',methods = ['POST', 'GET'])
 def sign():
