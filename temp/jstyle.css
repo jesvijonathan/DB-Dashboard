@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.ment-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+  transition: 0.3s;
+}
+.ment-card {
+  width: 300px;
+  max-width: 300px;
+  min-height: 490px;
+  position: relative;
+  text-align: center;
+  margin: 32px;
+  background: rgba(255, 255, 255, 0.95 2);
+  border-radius: 10px;
+  /*backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);*/
+  border: solid 2px #6c757d62;
+  box-shadow: 0 13px 25px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+.ment-card:hover{
+  
+  transition: 0.3s ease-out;
+  border: solid 2px rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 13px 25px rgb(90, 90, 90), 0 2px 7px rgba(0, 0, 0, 0.897);
+
+}
+.pic-container {
+  width: 110px;
+  height: 110px;
+  border-radius: 100%;
+  margin: 40px auto 0px;
+}
+.ment-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  margin: auto;
+  position: relative;
+  top: 5px;
+  box-shadow: 0 13px 25px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);
+  
+}
+.ment-name{
+
+  padding-top: 25px;
+}
+.ment-name span {
+  color: #000000;
+  font-size: 17px;
+  font-weight: 500;
+}
+.ment-title {
+  color: #3d77c2;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px;
+}
+.ment-description {
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 26px 22px;
+  height: 160px;
+}
+.ment-message {
+
+  position: absolute;
+  background: #138496;
+  background: -webkit-linear-gradient(to right, #138496, #105863);
+  background: linear-gradient(to right, #138496, #056b7a);
+  box-shadow: 0 0 20px 4px #ffffff, 0 0 20px 0px rgb(37, 37, 37);
+  border-radius: 32px;
+  padding: 10px;
+  width: 80%;
+  margin: 0;
+  margin-top: 15px;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%)
+}
+.ment-message a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  font-size: 17px;
+}
+.ment-message a:hover{
+  transition: 0.2s ease-out;
+  color: rgb(216, 216, 216);
+}
+.ment-message:hover {
+  box-shadow: 0 0 20px 0px #ffffff, 0 4px 9px 0px #3f3f3f;
+  background: linear-gradient(to right, #3ba8b9, #0f5d69);
+  transition: 0.3s;
+
+}
+.ment-links {
+  margin: 42px 0;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}
+.cand-cir {
+  z-index: 1;
+  width: 250px;
+  height: 250px;
+  border: 3px solid;
+  border-radius: 100%;
+  margin: 0;
+  position: absolute;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #17a2b8;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+
+  /*box-shadow: 0 13px 25px rgba(0, 0, 0, 0.2), 0 3px 6px rgba(0, 0, 0, 0.2);*/
+}
+.cand-cir:hover .cand-pic{
+  transition: 0.3s;
+  transform: scale(1.1);
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+}
+.cand-cir:hover .cand-name{
+  display: block;
+  text-decoration: none;
+  color: #000000b7;
+  font-size: 20px;
+  transform: scale(1.1);
+}
+.cand-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  margin: auto;  
+  transition: 0.3s ease-out;
+}
+.cand-name{
+  text-decoration: none;
+  color: #00000000;
+  margin: -30%;
+  display: block;
+  font-weight: 900;
+  transition: 0.3s ease-out;
+}
+.cand-name a, a:hover, a:active, a:focus{
+  transition: 0.3s;
+  text-decoration: none;
+  color: #000000b7;
+  font-size: 20px;
+  transform: scale(1.1);
+}
+#can-1{
+  margin-top: 0%;
+  left: 15%;
+}
+#can-2{
+  margin-top: 42%;
+  left: 30%;
+}
+#can-3{
+  margin-top: 0%;
+  left: 50%;
+}
+#can-4{
+  margin-top: 42%;
+  left: 70%;
+}
+#can-5{
+  margin-top: 0%;
+  left: 85%;
+}

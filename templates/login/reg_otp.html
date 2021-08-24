@@ -41,6 +41,8 @@
   <input id="button" type="submit" value="Verify"  class="btn btn-info btn-md">  
 </div>
 <input id="no" type="text" name="no" >
+<input id="noo" type="text" name="noo" >
+<input id="nooo" type="text" name="nooo" >
  </form>  
 
 </div>
@@ -169,6 +171,12 @@ var button = document.getElementById('button');
 button.onclick = function () {
     var str = t1.value + t2.value +t3.value +t4.value +t5.value +t6.value;
     document.getElementById('no').value = str;
+                
+    var str1 = '{{ username }}';
+    document.getElementById('noo').value = str1;
+    
+    var str2 = '{{ email }}';
+    document.getElementById('noo0').value = str2;
                 return true;
 };
 

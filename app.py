@@ -1,4 +1,5 @@
 
+from os import name
 import login
 import log
 import database
@@ -12,11 +13,11 @@ app = Flask(__name__)
 mail = Mail(app)  
 app.config["MAIL_SERVER"]='smtp.gmail.com'  
 app.config["MAIL_PORT"] = 465      
-app.config["MAIL_USERNAME"] = 'your_email@gmail.com'  
-app.config['MAIL_PASSWORD'] = 'your_password'  
+app.config["MAIL_USERNAME"] = email
+app.config['MAIL_PASSWORD'] = email_password  
 app.config['MAIL_USE_SSL'] = True  
 mail = Mail(app)  
-otp = randint(000000,999999)  
+otp = randint(000000,999999) 
 
 def load():
     db = connector.connect(
@@ -38,7 +39,7 @@ def load():
     database_create = database.database_create(cursor, db)
     database_create.create_base()
 
-load()
+#load()
 print("database loaded")
 
 
@@ -144,21 +145,37 @@ def setcookie():
 def reg():
     return render_template("login/register.html")
 
+@app.route('/confirm/<user>',methods = ['POST', 'GET'])
+def confirm(user):
+    print(user)
+    log.verify(user)
+    return render_template("login/ok.html",val="You Have Been Successfully Registered !".format(u=user))
+
 @app.route('/verify',methods = ["POST"])  
 def verify():  
    data = request.form
    email=None
    if data['member']=='sudo' or data['member']=='admin':
       return render_template("login/ok.html",val="Wait For approval..")
+  
    msg = log.arrange(data['uname'],data['pass'],data['email'],data['fname'],data['lname'], data['member'])
-    
+
    if msg == 1:
       email = data["email"]
+      username = data["uname"]
       msg = Message('My Dashboard OTP Verification Number',sender = 'username@gmail.com', recipients = [email])  
-      text= "Hello {f}, \n\nYour (OTP) verification code for My-Dashboard registration (as '{u}') is : {n}\n\nVisit our website for more details.\nThank You".format(f=data['fname'],u=data['uname'],n=otp)
-      msg.body = str(text)
-      mail.send(msg)
-      return render_template("login/reg_otp.html",email=email)
+         
+      if veri == 1:
+         #text= "Hello {f}, \n\n<a href=\"www.google.com\">Click Here</a> to complete your register in My-Dashboard as '{u}'  \n\nVisit our website for more details.\nThank You".format(f=data['fname'],u=data['uname'],n=otp)
+         #msg.body = str(text)
+         msg.html=render_template('login/veri.html', u=username,f=name, email=email)
+         mail.send(msg)
+         return render_template("login/ok.html",val="Redirecting..",msg="A verification email has been sent to ", email=email)
+      else:
+         text= "Hello {f}, \n\nYour (OTP) verification code for My-Dashboard registration (as '{u}') is : {n}\n\nVisit our website for more details.\nThank You".format(f=data['fname'],u=data['uname'],n=otp)
+         msg.body = str(text)
+         mail.send(msg)
+         return render_template("login/reg_otp.html",email=email,username=username)
    else:
       return render_template("login/ok.html",val=msg)
 
@@ -166,8 +183,12 @@ def verify():
 @app.route('/validate',methods=["POST"])   
 def validate():  
    user_otp = request.form['no']
+   username = request.form['noo']
+   email = request.form['nooo']
+
    try:  
-      if otp == int(user_otp):  
+      if otp == int(user_otp):
+         log.verify(username)
          return render_template("login/ok.html", val="You Have Been Verified !") 
    except:
       pass
