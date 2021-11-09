@@ -1,138 +1,200 @@
-
-<!DOCTYPE html>  
-<html>  
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<head>
-    <title>User Registeration</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Free Web tutorials">
-    <meta name="keywords" content="HTML, CSS, JavaScript">
-    <meta name="author" content="John Doe">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+  <link
+    href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    rel="stylesheet"
+    id="bootstrap-css"
+  />
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!------ Include the above in your HEAD tag ---------->
+  <head>
+    <title>DB-Dashboard Registeration</title>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Free Web tutorials" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
- 
- <body >   
-     <h3 class="text-center text-info" id="of" >Registeration</h3>
-     <!--class="row justify-content-center align-items-center"-->
- <form action = "/verify"  class="form" method = "POST">  
-<div class="container">
-<div class="row justify-content-center align-items-center">
-<div class="">
-    <div id="login-box"  class="a">
 
-    <div >
-        <label class="hole" >Username:</label>
-        <input type="text" name="uname" id='explicit-block-txt' value='' onpaste="return false" class="ass" autofocus placeholder="Ex : don_diablo" autocapitalize="none" autocomplete="off"><br>
-           
-    </div>
-    <div >
-        <label class="hole">Password: </label>
-        <input type="text" id="pass" name="pass" class="ass"  autocorrect="off" autocapitalize="none" autocomplete="off" required>
-    </div>
-    <div>
-        <label class="hole">Confirm: </label>
-        <input type="text" id="cpas" name="cpas"  class="ass" autocorrect="off" autocapitalize="none" autocomplete="off" required><br><br>
-    </div>
+  <body>
+    <h3 class="text-center text-info" id="of">Registeration</h3>
+    <!--class="row justify-content-center align-items-center"-->
+    <form action="/verify" class="form" method="POST">
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="">
+            <div id="login-box" class="a">
+              <div>
+                <label class="hole">Username:</label>
+                <input
+                  type="text"
+                  name="uname"
+                  id="explicit-block-txt"
+                  value=""
+                  onpaste="return false"
+                  class="ass"
+                  autofocus
+                  placeholder="Ex : don_diablo"
+                  autocapitalize="none"
+                  autocomplete="off"
+                /><br />
+              </div>
+              <div>
+                <label class="hole">Password: </label>
+                <input
+                  type="text"
+                  id="pass"
+                  name="pass"
+                  class="ass"
+                  autocorrect="off"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  required
+                />
+              </div>
+              <div>
+                <label class="hole">Confirm: </label>
+                <input
+                  type="text"
+                  id="cpas"
+                  name="cpas"
+                  class="ass"
+                  autocorrect="off"
+                  autocapitalize="none"
+                  autocomplete="off"
+                  required
+                /><br /><br />
+              </div>
 
-    <div>
-        <label class="hole">First Name: </label>
-        <input type="text" name="fname" class="ass"  required> <br>
-    </div>
-    <div>
-        <label class="hole">Last Name: </label>
-        <input type="text" name="lname" class="ass"  placeholder="*Optional"><br><br>
-    </div>
-    <div>
-        <label class="hole">Address: </label> 
-        <input type="email" name="email" class="ass"  placeholder="Ex : YourEmail@gmail.com" required>  <br><br>
-    </div>
-    <div>
-        <label class="hole">Member: </label>
-        <input type="radio" id="user" name="member" class="button" style="margin-left: 14%;" value="user" checked>
-        <label for="user">User</label>
-        <input type="radio" id="guest" name="member"  style="margin-left: 2%" value="guest">
-        <label for="guest">Guest</label>
-        <div style=" display:none">
-        <input type="radio" id="admin" name="member" style="margin-left: 2%" value="admin">
-        <label for="admin">Admin (Request)</label> 
-        </div><br><br>
-    </div>
-    <div>
-        <input type = "submit" style="width: 100%;" value="Register" class="btn btn-info btn-md">  
-    </div>
-</div>
-</div>
-</div>
-</div>
+              <div>
+                <label class="hole">First Name: </label>
+                <input type="text" name="fname" class="ass" required /> <br />
+              </div>
+              <div>
+                <label class="hole">Last Name: </label>
+                <input
+                  type="text"
+                  name="lname"
+                  class="ass"
+                  placeholder="*Optional"
+                /><br /><br />
+              </div>
+              <div>
+                <label class="hole">Address: </label>
+                <input
+                  type="email"
+                  name="email"
+                  class="ass"
+                  placeholder="Ex : YourEmail@gmail.com"
+                  required
+                />
+                <br /><br />
+              </div>
+              <div>
+                <label class="hole">Member: </label>
+                <input
+                  type="radio"
+                  id="user"
+                  name="member"
+                  class="button"
+                  style="margin-left: 14%"
+                  value="user"
+                  checked
+                />
+                <label for="user">User</label>
+                <input
+                  type="radio"
+                  id="guest"
+                  name="member"
+                  style="margin-left: 2%"
+                  value="guest"
+                />
+                <label for="guest">Guest</label>
+                <div style="display: none">
+                  <input
+                    type="radio"
+                    id="admin"
+                    name="member"
+                    style="margin-left: 2%"
+                    value="admin"
+                  />
+                  <label for="admin">Admin (Request)</label>
+                </div>
+                <br /><br />
+              </div>
+              <div>
+                <input
+                  type="submit"
+                  style="width: 100%"
+                  value="Register"
+                  class="btn btn-info btn-md"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
 
-
-
- </form>  
- </body>  
- </html> 
-
- <style>
-.a{
+<style>
+  .a {
     width: 100%;
     padding: 7px;
-}
-.ass{
+  }
+  .ass {
     float: right;
     border: 2px solid #dadada;
     border-radius: 7px;
-}
-.ass:focus { 
+  }
+  .ass:focus {
     outline: none;
     border-color: #9ecaed;
     box-shadow: 0 0 10px #9ecaed;
-}
-.hole{
+  }
+  .hole {
     padding-left: 7px;
     padding-right: 10px;
-}
-body h3{
+  }
+  body h3 {
     margin-top: 28px;
     margin-bottom: 35px;
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  font-size: 14px;
-  padding-left: 5px;
-  opacity: 1; /* Firefox */
-}
-
- </style>
-
- <script>
-     var password = document.getElementById("pass")
-  , confirm_password = document.getElementById("cpas");
-
-function validatePassword(){
-  if(password.value != confirm_password.value) {
-    confirm_password.setCustomValidity("Passwords Does Not Match");
-  } else {
-    confirm_password.setCustomValidity('');
   }
-}
 
-password.onchange = validatePassword;
-confirm_password.onkeyup = validatePassword;
+  ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-size: 14px;
+    padding-left: 5px;
+    opacity: 1; /* Firefox */
+  }
+</style>
 
-var t = document.getElementById("explicit-block-txt")
-t.onkeypress = function(e) {
+<script>
+  var password = document.getElementById("pass"),
+    confirm_password = document.getElementById("cpas");
+
+  function validatePassword() {
+    if (password.value != confirm_password.value) {
+      confirm_password.setCustomValidity("Passwords Does Not Match");
+    } else {
+      confirm_password.setCustomValidity("");
+    }
+  }
+
+  password.onchange = validatePassword;
+  confirm_password.onkeyup = validatePassword;
+
+  var t = document.getElementById("explicit-block-txt");
+  t.onkeypress = function (e) {
     var chr = String.fromCharCode(e.which);
-    if ("></\" \',*^%;{}[]()=+\\".indexOf(chr) >= 0){
-        alert("Special characters are not allowed !")
-        return false;}
+    if ("></\" ',*^%;{}[]()=+\\".indexOf(chr) >= 0) {
+      alert("Special characters are not allowed !");
+      return false;
+    }
+  };
 
-
-};
-
-document.getElementById("demo").innerHTML =
-"The full URL of this page is:<br>" + window.location.href;
- </script>
+  document.getElementById("demo").innerHTML =
+    "The full URL of this page is:<br>" + window.location.href;
+</script>

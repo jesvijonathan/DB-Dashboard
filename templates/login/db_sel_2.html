@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dropdown</title>
+  </head>
+  <body>
+    <form method="POST" action="/db_show">
+      <select name="db" id="list" onchange="getSelectValue();">
+        {% for colour in colours %}
+        <option value="{{colour}}" selected>{{colour}}</option>
+        " {% endfor %}
+      </select>
+
+      <input
+        id="button"
+        type="submit"
+        name="select"
+        class="btn btn-info btn-md"
+      />
+    </form>
+
+    <script></script>
+
+    <script>
+      function getSelectValue() {
+        var selectedValue = document.getElementById("list").value;
+        console.log(selectedValue);
+      }
+      getSelectValue();
+    </script>
+  </body>
+</html>

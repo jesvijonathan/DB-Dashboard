@@ -7,7 +7,7 @@ from config import *
 from mysql import connector
 from flask import Flask, redirect, url_for, request, render_template, make_response
 from flask_mail import * 
-from random import randint
+from random import randint, random, choice
 
 app = Flask(__name__)
 mail = Mail(app)  
@@ -23,18 +23,12 @@ def load():
     db = connector.connect(
     host=database_host,
     user=database_user,
+    database=database_name,
     password=database_password)
     cursor = db.cursor(buffered=True,dictionary=True)
 
     sql = "CREATE DATABASE IF NOT EXISTS {s0}".format(s0=database_name)
     cursor.execute(sql)
-
-    db = connector.connect(
-    host=database_host,
-    user=database_user,
-    password=database_password,
-    database=database_name)
-    cursor = db.cursor(buffered=True,dictionary=True)
     
     database_create = database.database_create(cursor, db)
     database_create.create_base()
@@ -105,32 +99,119 @@ def table():
    if request.method == 'POST':
       t = request.form
       print(t)
-      t = int(t['select'])
+      t = t['select']
    
-   if t == 1:
-      tbl=database.get_user()
+   if t == "1":
+      tbl=database.call().get_user()
       title = "User Base"
       detail = "Contains all user's info, the bot has interacted with creating a log"   
-   elif t == 2:
-      tbl=database.get_chat()
+   elif t == "2":
+      tbl=database.call().get_chat()
       title = "Chat Base"
       detail = "Contains all group info, the bot has been in"
-   elif t == 3:
-      tbl=database.get_link()
+   elif t == "3":
+      tbl=database.call().get_link()
       title = "Link Base"
       detail = "Contains link details of members the bot has seen in a group"
-   elif t == 4:
-      tbl=database.get_settings()
+   elif t == "4":
+      tbl=database.call().get_settings()
       title = "Settings Base"
       detail = "Contains settings of groups"
-   elif t == 5:
-      tbl=database.get_welcome()
+   elif t == "5":
+      tbl=database.call().get_welcome()
       title = "Welcome Base"
       detail = "Welcome settings of all groups"
+      
+   elif t == "db":
+      return db_view()
 
    tbl = table_create(tbl)
 
    return render_template('login/load.html',f=tbl[0],r=tbl[1],title=title,detail=detail)
+
+@app.route('/db_sel1')
+def db_view(error=""):
+   tbl=database.call().get_db()
+   
+   title = "Db Select"
+   desc = "Select the Database that you want to explore"
+   button = "Next"
+   defopt = "Select A Database"
+   
+   lis = []
+   for i in tbl: lis.append(i["Database"])
+
+   val = ""   
+   sel = "selected"
+
+   return render_template('login/db_selector.html',title=title, desc=desc, button=button, options=lis, redirect="/db_sel2", error=error, defopt=defopt, val=val, sel=sel)
+
+
+@app.route('/db_sel2',methods = ['POST', 'GET'])
+def tbl_view(error=""):
+   t = None
+   if request.method == 'POST':
+      t = request.form
+      print(t)
+      try:
+         t = t['db']
+      except:
+         if error == "":
+            error = "Please Select a Database To Proceed !"
+         return db_view(error)  
+
+   if t == "":
+      if error == "":
+         error = "Please Select a Database To Proceed !"
+      return db_view(error)   
+   #print(t)
+
+   title = "Table Select"
+   desc = "Select the Table to be viewed from '{0}' database".format(t)
+   button = "View"
+   defopt = "Select A Table"
+
+   tbl=database.call().get_tbl(t)
+   lis = []
+   
+   for i in tbl: 
+      print(i, i.values())
+      lis.append(list(i.values())[0])
+   #print(lis)
+
+   defopt = "Select A Table"
+   val = ""   
+   sel = "selected" # leave empty or add selected
+
+   return render_template('login/db_selector.html',title=title, desc=desc, button=button, options=lis, redirect="/db_show", error=error, defopt=defopt, sel=sel, val=val)
+
+
+@app.route('/sql_cmd',methods = ['POST', 'GET'])
+def sql_cmd():
+   return render_template('login/sql_cmd.html')
+
+
+@app.route('/db_show',methods = ['POST', 'GET'])
+def table_display():
+   t = None
+   if request.method == 'POST':
+      t = request.form
+      print(t)
+      try:
+         t = t['db']
+      except:   
+         error = "You Did Not Select A Table, Redo Process Again !"
+         return tbl_view(error)
+
+
+   if t == "":
+      error = "You Did Not Select A Table, Redo Process Again !"
+      return tbl_view(error)
+
+   tbl=database.call().get_table(t)
+   tbl = table_create(tbl)
+
+   return render_template('login/load.html',f=tbl[0],r=tbl[1],title=t,detail="")
 
 
 @app.route('/setcookie')

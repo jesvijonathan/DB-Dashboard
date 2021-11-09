@@ -1,18 +1,18 @@
 # Database Connection Configuration
-database_name = "your_db_name"
-database_user = "db_user"
-database_password = "db_password"
+database_name = "bot_test"
+database_user = "root"
+database_password = "Eulah2002@mysql"
 database_host = "localhost"
 
 
 #your otp/service email account //make sure to opt less secure option in google so that it allows mail automation (https://www.google.com/settings/security/lesssecureapps)
-email = "your_service_email@gmail.com"
-email_password = "your_email_password"
+email = "jesvijonathan.aids2020@citchennai.net"
+email_password = "happysunday"
 
 #create an default account for yourself
-username="admin"
-password = "root"
+username="eulah"
+password = "1234"
 
-# 0 - Otp //secure
+# 0 - Otp
 # 1 - Direct email verification //preferred
 veri = 0

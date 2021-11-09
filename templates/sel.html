@@ -7,39 +7,284 @@
 <!------ Include the above in your HEAD tag ---------->
 <head>
     <meta charset="UTF-8">
-    <title>Menu</title>
+    <title>DB-Dashboard</title>
     <meta name="description" content="Free Web tutorials">
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="author" content="John Doe">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
+  
+  <header class="top-nav">
+      <div class="top-title">DB-Dashboard</div>
+      <div class="user">
+        <img class="user-pic" src="https://cdn3.iconfinder.com/data/icons/avatars-round-flat/33/man5-512.png" alt="Profile Picture"></img>
+        <div class="top-user">Jesvi Jonathan</div>
+        <button name="logout" value="1" type="submit" class="log-button">Logout</button>
+      </div>
+  </header>
+
+
 
    <body>
-       <div class="base" >
+      
+
+
+<div class="dash">
+    <div class="base" >
       <form class="row justify-content-center align-items-center" action = "/load" method = "post" >
          <h2 id="hea" class="text-center text-info">
              <div class="he">Database View</div>
          </p>
-         <button name="select" value="1" type="submit" class="btn btn-info btn-md">User Base</button>
-         <button name="select" value="2" type="submit" class="btn btn-info btn-md">Chat Base</button>
-         <button name="select" value="3" type="submit" class="btn btn-info btn-md">Link Base</button>
-         <button name="select" value="4" type="submit" class="btn btn-info btn-md">Settings Base</button>
-         <button name="select" value="5" type="submit" class="btn btn-info btn-md">Welcome Base</button>
+         <button name="select" value="1" type="submit" class="btn btn-info btn-md but-li">User Base</button>
+         <button name="select" value="2" type="submit" class="btn btn-info btn-md but-li">Chat Base</button>
+         <button name="select" value="3" type="submit" class="btn btn-info btn-md but-li">Link Base</button>
+         <button name="select" value="4" type="submit" class="btn btn-info btn-md but-li">Settings Base</button>
+         <button name="select" value="5" type="submit" class="btn btn-info btn-md but-li">Welcome Base</button>
         </form>
     </div>
+    <div class="base" >
+
+        <h2 id="hea" class="text-center text-info">
+            <div class="he">SQL Commandline</div>
+        </p>
+        <div class="desc">
+        <text class="dec-text">Get access to the servers database from you local device and use it to preform various task on your service</text>
+    </div>
+        <form action = "/sql_cmd" method = "post" >
+            <button name="select" value="1" type="submit" class="butt btn btn-info btn-md ">Go To Remote Terminal</button>
+        </form>
+    </div>
+
+    <div class="base" >
+
+        <h2 id="hea" class="text-center text-info">
+            <div class="he">Service Status</div>
+        </p>
+        <div class="desc">
+        <text class="dec-text">View your running service's current live status & make changes from a list of option made available</text>
+    </div>
+            <button name="select" value="1" type="submit" class="butt btn btn-info btn-md ">System Status</button>
+    </div>
+
+    <div class="base" >
+
+        <h2 id="hea" class="text-center text-info">
+            <div class="he">Database</div>
+        </p>
+        <div class="desc">
+        <text class="dec-text">View your Database from web</text>
+    </div>
+    <form action = "/load" method = "post" >
+        <button name="select" value="db" type="submit" class="butt btn btn-info btn-md ">Access Db</button>
+    </form>
+    </div>
+    
+</div>
    </body>
+
+
+   <footer class="bot-nav">
+       <div class="bot-style">DB-Dashboard </div>
+    
+       <div class="line"></div>
+
+       <div class="bot-text">Copyright © 2020-2021</div>
+       <div class="bot-text" style="padding-top: 94px;">Powered by LocalHost</div>
+    
+       <div class="bot-service" >
+           <a href="">Documentation</a> |
+           <a href="">Donate</a> 
+           <br>
+           <a href="">About</a> |
+           <a href="">Support</a> |
+           <a href="">Tools</a>
+    </div>
+   </footer>
+
 </html>
 
 <style>
 
+.dash{
+    margin: 28px;
+}
+
+.base{
+    border: 3px solid #00000068;
+    border-radius: 20px;
+
+    margin-top: 50px;
+    padding: 18px;
+    padding-left: 28px;
+    padding-right: 28px;
+    
+    max-width: 200px;
+    max-width: 100%;    
+}
+
+.desc{
+background-color: rgba(0, 0, 0, 0.185);
+border-radius: 7px;
+
+padding-top: 25px;
+padding-bottom: 25px;
+margin-bottom: 20px;
+
+line-height: 0.6;
+}
+
+.dec-text{
+    font-size: 15px;
+    font-weight: 400;
+    color: black;
+}
+
 .base button {
+
     display:block;
     min-width: 200px;
+
+}
+
+.but-li{
+    
     margin: 5px;
+}
+
+.butt{
+
+    margin: 0 auto;
 }
 
 .he {
    margin-bottom: 40px;
+}
+
+.top-nav{
+    width: 100%;
+    background-color: rgb(29, 159, 163);
+    height: 80px;
+}
+
+.top-title{
+    padding-top: 20px;
+    padding-left: 28px;
+
+    position:absolute;
+    color: rgb(255, 255, 255);
+    font-size: 28px;
+    font-weight: bold;
+    text-align:left;
+}
+
+@media only screen and (max-width: 720px) {
+    .user {
+        display: none;
+    }
+}
+
+.top-user{
+    position:relative;
+    padding-top: 18px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    text-align: left;
+    right: 12px;
+
+    color: rgb(255, 255, 255);
+}
+
+.log-button{
+    height: fit-content;
+
+    width: 70px;
+    margin-top: 7px;
+
+    font-size: 9px;
+    font-weight: 700;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.747);
+    
+    right: 20px;
+
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px;
+}
+
+.log-button:hover{
+    color: rgba(255, 255, 255, 0.747);
+
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.267);
+    border: 0px;
+}
+
+.user-pic { 
+    position: relative;
+    margin-top: 3px;
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    
+    margin-right: 28px;
+    float: right;
+    border: 0px solid;
+}
+
+.user{
+    border: 0px solid #dadada;
+    min-width:230px;
+    min-height: 80px;
+    float: right;
+    
+}
+
+.bot-nav{
+    width: 100%;
+    background-color: rgb(29, 159, 163);
+    height: 127px;
+    color: white;
+}
+
+.bot-style{
+    position: absolute;
+    font-size: 21px;
+    padding-top: 24px;
+    font-weight: bolder;
+    text-align: center;
+    width: 100%;
+}
+
+.line{
+    border-top: 2px solid rgb(255, 255, 255);
+}
+.bot-text{
+    position: absolute;
+    text-align: left;
+
+    margin-left: 28px;
+    font-size: 9px;
+    padding-top: 80px;
+    font-weight: 600;
+}
+.bot-service{
+    position: absolute;
+
+    display: block;
+    
+    margin-right: 28px;
+    right: 0px;
+    padding-top: 80px;
+    width: fit-content;
+
+    font-size: 9px;
+    font-weight: 600;
+}
+.bot-service a{
+    color: white;
 }
 
 </style>
